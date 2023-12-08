@@ -87,7 +87,8 @@ public class Reservation {
     }
 
     public int calculateTotalOrderAmount() {
-        return menus.entrySet().stream().mapToInt(key -> Menu.valueOf(String.valueOf(key.getKey())).getPrice() * key.getValue())
+        return menus.entrySet().stream()
+                .mapToInt(key -> Menu.valueOf(String.valueOf(key.getKey())).getPrice() * key.getValue())
                 .sum();
     }
 
@@ -98,4 +99,7 @@ public class Reservation {
         }
         return false;
     }
+
+
+
 }
