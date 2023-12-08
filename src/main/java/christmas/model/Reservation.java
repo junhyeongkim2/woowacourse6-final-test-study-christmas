@@ -23,8 +23,11 @@ public class Reservation {
     private final static String QUANITY = "개";
     private final static String LINE = "\n";
     private final static int STANDARD_TOTAL_ORDER_AMOUNT = 120000;
+    private final static int MAX_ORDER_COUNT = 20;
+    private static final String MENUS_ERROR_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
 
-    public static final String MENUS_ERROR_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+    private final static String ONE_MENU_PATTERN = "^[가-힣]+-\\d+$";
+    private final static String TWO_OR_MORE_MENU_PATTERN = "([가-힣]+-\\d+)(?:,([가-힣]+-\\d+))*";
 
 
     private final Map<Menu, Integer> menus;
@@ -116,7 +119,7 @@ public class Reservation {
         return false;
     }
 
-    public Map<Menu, Integer> validateIsOnlyDrink(Map<Menu, Integer> menus) {
+    private Map<Menu, Integer> validateIsOnlyDrink(Map<Menu, Integer> menus) {
         if (menus.keySet().stream().allMatch(key -> key.isDrink())) {
             throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
         }
@@ -124,7 +127,7 @@ public class Reservation {
     }
 
     public void validateIsOverTwentyMenu(Map<Menu, Integer> menus) {
-        if (menus.entrySet().stream().mapToInt(key -> key.getValue()).sum() > 20) {
+        if (menus.entrySet().stream().mapToInt(key -> key.getValue()).sum() > MAX_ORDER_COUNT) {
             throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
         }
     }
@@ -149,8 +152,8 @@ public class Reservation {
 
     public void validateMenuInputForm(String menuInput) {
 
-        Pattern oneMenuPattern = Pattern.compile("^[가-힣]+-\\d+$");
-        Pattern twoOrMoreMenuPatter = Pattern.compile("([가-힣]+-\\d+)(?:,([가-힣]+-\\d+))*");
+        Pattern oneMenuPattern = Pattern.compile(ONE_MENU_PATTERN);
+        Pattern twoOrMoreMenuPatter = Pattern.compile(TWO_OR_MORE_MENU_PATTERN);
 
         Matcher oneMenuMatcher = oneMenuPattern.matcher(menuInput);
         Matcher twoOrMoreMenuMatcher = twoOrMoreMenuPatter.matcher(menuInput);
