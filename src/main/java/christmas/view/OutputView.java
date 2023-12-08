@@ -44,4 +44,9 @@ public class OutputView {
         System.out.println(eventResult.calculateTotalBenefitAmount());
     }
 
+    public static void printExpectedPaymentAmount(EventResult eventResult) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(eventResult.calculateExpectedPaymentAmount());
+    }
+
 }
