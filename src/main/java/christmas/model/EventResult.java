@@ -16,11 +16,12 @@ public class EventResult {
         this.events = events;
     }
 
-    public static EventResult of(int visitDay, String menuInput) {
+    public static EventResult of(Reservation reservation) {
 
         return new EventResult(
-                List.of(new ChristmasDdayEvent(), new GiveawayEvent(), new SpecialEvent(), new WeekdayEvent(),
-                        new WeekendEvent()));
+                List.of(new ChristmasDdayEvent(reservation), new GiveawayEvent(reservation),
+                        new SpecialEvent(reservation), new WeekdayEvent(reservation),
+                        new WeekendEvent(reservation)));
     }
 
     public List<EventPolicy> getEvents() {

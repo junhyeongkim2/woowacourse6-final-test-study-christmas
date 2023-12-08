@@ -12,7 +12,7 @@ public class EventResultTest {
     @Test
     void of_EqualResult_Success() {
         //given
-        EventResult eventResult = EventResult.of(5, "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+        EventResult eventResult = EventResult.of(new Reservation(5, "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1"));
         //when
         List<EventPolicy> events = eventResult.getEvents();
         //then
