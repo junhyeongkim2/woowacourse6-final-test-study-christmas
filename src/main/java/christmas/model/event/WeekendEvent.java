@@ -12,11 +12,14 @@ public class WeekendEvent implements EventPolicy {
 
     @Override
     public boolean isSatisfy(Reservation reservation) {
-        return false;
+        return reservation.isVisitDaySatisfyWeekend();
     }
 
     @Override
     public int calculateDiscount() {
+        if (isSatisfy(reservation)) {
+            return reservation.calculateMainMenuCount() * 2023;
+        }
         return 0;
     }
 }

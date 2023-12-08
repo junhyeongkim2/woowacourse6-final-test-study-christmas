@@ -31,4 +31,11 @@ public enum Menu {
         }
         return false;
     }
+
+    public boolean isMain() {
+        if (category == "메인") {
+            return true;
+        }
+        return false;
+    }
 }

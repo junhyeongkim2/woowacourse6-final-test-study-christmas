@@ -2,7 +2,6 @@ package christmas.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.model.event.ChristmasDdayEvent;
 import christmas.model.event.WeekdayEvent;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

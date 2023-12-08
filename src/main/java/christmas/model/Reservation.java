@@ -57,4 +57,16 @@ public class Reservation {
         List<Menu> desserts = Arrays.stream(Menu.values()).filter(Menu::isDessert).collect(Collectors.toList());
         return keys.stream().filter(key -> desserts.contains(key)).mapToInt(key -> menus.get(key)).sum();
     }
+
+    public boolean isVisitDaySatisfyWeekend() {
+        LocalDate calender = LocalDate.of(2023, 12, visitDay);
+        DayOfWeek dayOfWeek = calender.getDayOfWeek();
+        return (dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY);
+    }
+
+    public int calculateMainMenuCount() {
+        List<Menu> keys = menus.keySet().stream().collect(Collectors.toList());
+        List<Menu> mains = Arrays.stream(Menu.values()).filter(Menu::isMain).collect(Collectors.toList());
+        return keys.stream().filter(key -> mains.contains(key)).mapToInt(key -> menus.get(key)).sum();
+    }
 }
