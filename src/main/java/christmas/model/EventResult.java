@@ -10,6 +10,10 @@ import java.util.List;
 
 public class EventResult {
 
+    private static final String NONE = "없음";
+    private static final String WON = "원";
+    private static final String SPACE = "\n";
+
     private final List<EventPolicy> events;
 
     public EventResult(List<EventPolicy> events) {
@@ -42,10 +46,10 @@ public class EventResult {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         if (events.stream().mapToInt(event -> event.calculateDiscount()).sum() == 0) {
-            return "없음\n";
+            return NONE+SPACE;
         }
         events.stream().filter(event -> event.calculateDiscount() != 0)
-                .forEach(event -> sb.append(event.getEventType().getName() + ": " + event.calculateDiscount() + "원\n"));
+                .forEach(event -> sb.append(event.getEventType().getName() + ": " + event.calculateDiscount() + WON+SPACE));
         return sb.toString();
     }
 

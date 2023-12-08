@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Calender {
 
-    private final List<Integer> SPECIAL_DAYS = List.of(3, 10, 17, 24, 25, 31);
-    private final int CURRENT_YEAR = 2023;
-    private final int CURRENT_MONTH = 12;
-    private final int START_DAY = 1;
-    private final int END_DAY = 25;
+    private static final List<Integer> SPECIAL_DAYS = List.of(3, 10, 17, 24, 25, 31);
+    private static final int CURRENT_YEAR = 2023;
+    private static final int CURRENT_MONTH = 12;
+    private static final int START_DAY = 1;
+    private static final int END_DAY = 25;
 
     private final LocalDate calender;
     private final DayOfWeek dayOfWeek;
