@@ -5,14 +5,14 @@ import christmas.model.EventResult;
 import christmas.model.Reservation;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.util.function.Supplier;
 
 public class EventPlannerController {
 
     public void start() {
         OutputView.printPlannerStartMessage();
-        int visitDay = InputView.readVisitDay();
-        String menuInput = InputView.readMenus();
-        Reservation reservation = new Reservation(menuInput, new Calender(visitDay));
+        int visitDay = repeatUntilValid(() -> InputView.readVisitDay());
+        Reservation reservation = repeatUntilValid(() -> new Reservation(InputView.readMenus(), new Calender(visitDay)));
         OutputView.printVisitDayMessage(reservation);
         OutputView.printMenus(reservation);
         OutputView.printTotalOrderAmount(reservation);
@@ -24,5 +24,15 @@ public class EventPlannerController {
                 eventResult.calculateExpectedPaymentAmount(reservation.calculateTotalOrderAmount()));
         OutputView.printBadge(eventResult);
     }
+
+    private <T> T repeatUntilValid(Supplier<T> function) {
+        try {
+            return function.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return repeatUntilValid(function);
+        }
+    }
+
 
 }
