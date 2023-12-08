@@ -16,6 +16,14 @@ import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 public class Reservation {
 
+    private static String MENU_SPLIT_REGEX = "(\\p{IsHangul}+)-(\\d+)";
+    private static int MENU_NAME = 1;
+    private static int MENU_COUNT = 2;
+    private static String BLANK = " ";
+    private static String QUANITY = "개";
+    private static String LINE = "\n";
+    private static int STANDARD_TOTAL_ORDER_AMOUNT = 120000;
+
     private final Map<Menu, Integer> menus;
     private final Calender calender;
 
@@ -30,11 +38,11 @@ public class Reservation {
 
     public Map<Menu, Integer> createMenus(String menuInput) {
         Map<Menu, Integer> menus = new EnumMap<Menu, Integer>(Menu.class);
-        Pattern twoOrMoreMenuPattern = Pattern.compile("(\\p{IsHangul}+)-(\\d+)");
+        Pattern twoOrMoreMenuPattern = Pattern.compile(MENU_SPLIT_REGEX);
         Matcher twoOrMoreMenuMatcher = twoOrMoreMenuPattern.matcher(menuInput);
         while (twoOrMoreMenuMatcher.find()) {
-            String menuName = twoOrMoreMenuMatcher.group(1);
-            int menuCount = Integer.parseInt(twoOrMoreMenuMatcher.group(2));
+            String menuName = twoOrMoreMenuMatcher.group(MENU_NAME);
+            int menuCount = Integer.parseInt(twoOrMoreMenuMatcher.group(MENU_COUNT));
             validateIsContainMenu(menuName);
             validateDuplicateMenu(menuName, menus);
             validateIsUnderOneMenu(menuCount);
@@ -49,7 +57,7 @@ public class Reservation {
 
     public String getMenusAndCount() {
         StringBuilder sb = new StringBuilder();
-        menus.entrySet().stream().forEach(key -> sb.append(key.getKey() + " " + key.getValue() + "개\n"));
+        menus.entrySet().stream().forEach(key -> sb.append(key.getKey() + BLANK + key.getValue() + QUANITY + LINE));
         return sb.toString();
     }
 
@@ -85,7 +93,7 @@ public class Reservation {
 
 
     public boolean isGiveaway() {
-        if (calculateTotalOrderAmount() >= 120000) {
+        if (calculateTotalOrderAmount() >= STANDARD_TOTAL_ORDER_AMOUNT) {
             return true;
         }
         return false;

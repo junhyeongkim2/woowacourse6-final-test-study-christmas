@@ -12,7 +12,7 @@ public class EventResult {
 
     private static final String NONE = "없음";
     private static final String WON = "원";
-    private static final String SPACE = "\n";
+    private static final String LINE = "\n";
 
     private final List<EventPolicy> events;
 
@@ -46,10 +46,10 @@ public class EventResult {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         if (events.stream().mapToInt(event -> event.calculateDiscount()).sum() == 0) {
-            return NONE+SPACE;
+            return NONE+ LINE;
         }
         events.stream().filter(event -> event.calculateDiscount() != 0)
-                .forEach(event -> sb.append(event.getEventType().getName() + ": " + event.calculateDiscount() + WON+SPACE));
+                .forEach(event -> sb.append(event.getEventType().getName() + ": " + event.calculateDiscount() + WON+ LINE));
         return sb.toString();
     }
 
