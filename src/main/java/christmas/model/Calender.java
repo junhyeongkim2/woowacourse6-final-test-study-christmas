@@ -8,7 +8,7 @@ public class Calender {
 
     private final LocalDate calender;
     private final DayOfWeek dayOfWeek;
-    private final List<Integer> specialDays = List.of(3, 10, 17, 24, 25, 31);
+    private final List<Integer> SPECIAL_DAYS = List.of(3, 10, 17, 24, 25, 31);
 
 
     public Calender(int visitDay) {
@@ -32,7 +32,7 @@ public class Calender {
     }
 
     public boolean isSpecialDay() {
-        if (specialDays.contains(calender.getDayOfMonth())) {
+        if (SPECIAL_DAYS.contains(calender.getDayOfMonth())) {
             return true;
         }
         return false;
