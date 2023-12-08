@@ -12,5 +12,10 @@ public class OutputView {
         System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!", reservation.getVisitDay());
     }
 
+    public static void printMenus(Reservation reservation) {
+        System.out.println("<주문 메뉴>");
+        System.out.println(reservation.getMenusAndCount());
+    }
+
 
 }

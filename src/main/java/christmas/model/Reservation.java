@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,12 @@ public class Reservation {
 
     public int getVisitDay() {
         return visitDay;
+    }
+
+    public String getMenusAndCount() {
+        StringBuilder sb = new StringBuilder();
+        menus.entrySet().stream().forEach(key -> sb.append(key + " " + key.getValue() + "개\n"));
+        return sb.toString();
     }
 
 
@@ -99,7 +106,6 @@ public class Reservation {
         }
         return false;
     }
-
 
 
 }
