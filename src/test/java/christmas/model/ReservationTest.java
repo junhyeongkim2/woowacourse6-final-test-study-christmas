@@ -35,4 +35,13 @@ public class ReservationTest {
                 IllegalArgumentException.class);
 
     }
+
+    @DisplayName("메뉴 개수 1 이상아닐 경우 예외 발생 테스트")
+    @Test
+    void createMenus_IfUnderOneMenu_ExceptionThrow() {
+        //given && when && then
+        assertThatThrownBy(() -> new Reservation("제로콜라-5,해산물파스타-0", new Calender(5))).isInstanceOf(
+                IllegalArgumentException.class);
+
+    }
 }

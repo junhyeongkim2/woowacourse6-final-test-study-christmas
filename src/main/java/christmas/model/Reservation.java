@@ -33,8 +33,9 @@ public class Reservation {
         Matcher twoOrMoreMenuMatcher = twoOrMoreMenuPattern.matcher(menuInput);
         while (twoOrMoreMenuMatcher.find()) {
             String menuName = twoOrMoreMenuMatcher.group(1);
-            validateIsContainMenu(menuName);
             int menuCount = Integer.parseInt(twoOrMoreMenuMatcher.group(2));
+            validateIsContainMenu(menuName);
+            validateIsUnderOneMenu(menuCount);
             menus.put(Menu.valueOf(menuName), menuCount);
         }
         return menus;
@@ -117,6 +118,12 @@ public class Reservation {
 
     public void validateIsContainMenu(String menu) {
         if (!Menu.isContain(menu)) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    public void validateIsUnderOneMenu(int menuCount) {
+        if (menuCount < 1) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
