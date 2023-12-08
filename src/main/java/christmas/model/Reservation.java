@@ -1,9 +1,15 @@
 package christmas.model;
 
+import java.text.DateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Reservation {
 
@@ -38,5 +44,17 @@ public class Reservation {
             return true;
         }
         return false;
+    }
+
+    public boolean isVisitDaySatisfyWeekday() {
+        LocalDate calender = LocalDate.of(2023, 12, visitDay);
+        DayOfWeek dayOfWeek = calender.getDayOfWeek();
+        return (dayOfWeek != DayOfWeek.FRIDAY && dayOfWeek != DayOfWeek.SATURDAY);
+    }
+
+    public int calculateDessertMenuCount() {
+        List<Menu> keys = menus.keySet().stream().collect(Collectors.toList());
+        List<Menu> desserts = Arrays.stream(Menu.values()).filter(Menu::isDessert).collect(Collectors.toList());
+        return keys.stream().filter(key -> desserts.contains(key)).mapToInt(key -> menus.get(key)).sum();
     }
 }

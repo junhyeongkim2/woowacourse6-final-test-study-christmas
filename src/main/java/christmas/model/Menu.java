@@ -25,4 +25,10 @@ public enum Menu {
     }
 
 
+    public boolean isDessert() {
+        if (category == "디저트") {
+            return true;
+        }
+        return false;
+    }
 }
