@@ -6,6 +6,9 @@ import christmas.model.Reservation;
 
 public class ChristmasDdayEvent implements EventPolicy {
 
+    private final int STANDARD_VISIT_DAY_SETTING_VALUE = 1;
+    private final int BASIC_DDAY_EVENT_DISCOUNT = 1000;
+
     private final Reservation reservation;
     private final EventType eventType = EventType.CHRISTMASDDAY;
 
@@ -22,7 +25,7 @@ public class ChristmasDdayEvent implements EventPolicy {
     @Override
     public int calculateDiscount() {
         if (isSatisfy(reservation)) {
-            return -((reservation.getVisitDay() - 1) *  EventType.CHRISTMASDDAY.getDiscountAmount() + 1000);
+            return -((reservation.getVisitDay() - STANDARD_VISIT_DAY_SETTING_VALUE) *  EventType.CHRISTMASDDAY.getDiscountAmount() + BASIC_DDAY_EVENT_DISCOUNT);
         }
         return 0;
     }
