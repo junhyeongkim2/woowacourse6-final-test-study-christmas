@@ -12,11 +12,14 @@ public class SpecialEvent implements EventPolicy {
 
     @Override
     public boolean isSatisfy(Reservation reservation) {
-        return false;
+        return reservation.isVisitDaySatisfySpecialDay();
     }
 
     @Override
     public int calculateDiscount() {
+        if (isSatisfy(reservation)) {
+            return 1000;
+        }
         return 0;
     }
 }

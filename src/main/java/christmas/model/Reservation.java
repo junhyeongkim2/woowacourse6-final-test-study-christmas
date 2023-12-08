@@ -69,4 +69,12 @@ public class Reservation {
         List<Menu> mains = Arrays.stream(Menu.values()).filter(Menu::isMain).collect(Collectors.toList());
         return keys.stream().filter(key -> mains.contains(key)).mapToInt(key -> menus.get(key)).sum();
     }
+
+    public boolean isVisitDaySatisfySpecialDay() {
+        List<Integer> specialDays = List.of(3, 10, 17, 24, 25, 31);
+        if (specialDays.contains(visitDay)) {
+            return true;
+        }
+        return false;
+    }
 }
