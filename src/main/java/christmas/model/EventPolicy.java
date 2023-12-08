@@ -6,4 +6,6 @@ public interface EventPolicy {
     int calculateDiscount();
 
     boolean isGiveaway();
+
+    EventType getEventType();
 }

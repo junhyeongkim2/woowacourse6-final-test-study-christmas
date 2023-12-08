@@ -37,4 +37,12 @@ public class EventResult {
         return totalOderAmount + events.stream().filter(event -> !event.isGiveaway())
                 .mapToInt(event -> event.calculateDiscount()).sum();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        events.stream().filter(event -> event.calculateDiscount() != 0)
+                .forEach(event -> sb.append(event.getEventType().getName() + ": " + event.calculateDiscount() + "원\n"));
+        return sb.toString();
+    }
 }

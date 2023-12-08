@@ -1,6 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.model.EventResult;
 import christmas.model.Menu;
 import christmas.model.Reservation;
 
@@ -31,6 +32,11 @@ public class OutputView {
         if (!reservation.isGiveaway()) {
             System.out.println("없음");
         }
+    }
+
+    public static void printEventResult(EventResult eventResult) {
+        System.out.println("<혜택 내역>");
+        System.out.println(eventResult.toString());
     }
 
 

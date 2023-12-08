@@ -1,13 +1,14 @@
 package christmas.model.event;
 
 import christmas.model.EventPolicy;
+import christmas.model.EventType;
 import christmas.model.Menu;
 import christmas.model.Reservation;
 
 public class GiveawayEvent implements EventPolicy {
 
     private final Reservation reservation;
-
+    private final EventType eventType = EventType.GIVEAWAY;
     public GiveawayEvent(Reservation reservation) {
         this.reservation = reservation;
     }
@@ -28,5 +29,10 @@ public class GiveawayEvent implements EventPolicy {
     @Override
     public boolean isGiveaway() {
         return true;
+    }
+
+    @Override
+    public EventType getEventType() {
+        return eventType;
     }
 }
