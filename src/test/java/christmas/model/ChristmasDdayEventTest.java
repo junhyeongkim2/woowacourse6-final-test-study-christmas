@@ -19,6 +19,6 @@ public class ChristmasDdayEventTest {
         //when
         int discount = christmasDdayEvent.calculateDiscount();
         //then
-        assertThat(discount).isEqualTo(3400);
+        assertThat(discount).isEqualTo(-3400);
     }
 }

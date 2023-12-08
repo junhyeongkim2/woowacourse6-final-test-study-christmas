@@ -16,6 +16,6 @@ public class SpecialEventTest {
         //when
         int discount = specialEvent.calculateDiscount();
         //then
-        assertThat(discount).isEqualTo(1000);
+        assertThat(discount).isEqualTo(-1000);
     }
 }

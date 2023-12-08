@@ -38,4 +38,8 @@ public enum Menu {
         }
         return false;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

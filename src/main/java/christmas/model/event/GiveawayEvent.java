@@ -1,6 +1,7 @@
 package christmas.model.event;
 
 import christmas.model.EventPolicy;
+import christmas.model.Menu;
 import christmas.model.Reservation;
 
 public class GiveawayEvent implements EventPolicy {
@@ -13,11 +14,11 @@ public class GiveawayEvent implements EventPolicy {
 
     @Override
     public boolean isSatisfy(Reservation reservation) {
-        return false;
+        return reservation.isGiveaway();
     }
 
     @Override
     public int calculateDiscount() {
-        return 0;
+        return -Menu.샴페인.getPrice();
     }
 }

@@ -15,6 +15,6 @@ public class WeekdayEventTest {
         //when
         int discount = weekdayEvent.calculateDiscount();
         //then
-        assertThat(discount).isEqualTo(2023 * 5);
+        assertThat(discount).isEqualTo(-(2023 * 5));
     }
 }

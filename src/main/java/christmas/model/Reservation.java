@@ -77,4 +77,18 @@ public class Reservation {
         }
         return false;
     }
+
+    public boolean isGiveaway() {
+        if (calculateTotalOrderAmount() >= 120000) {
+            return true;
+        }
+        return false;
+    }
+
+    public int calculateTotalOrderAmount() {
+        return menus.entrySet().stream().mapToInt(key -> Menu.valueOf(String.valueOf(key)).getPrice() * key.getValue())
+                .sum();
+    }
+
+
 }
