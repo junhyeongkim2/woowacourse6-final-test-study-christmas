@@ -20,6 +20,7 @@ public class Reservation {
     private final Calender calender;
 
     public Reservation(String menuInput, Calender calendar) {
+        validateMenuInputForm(menuInput);
         Map<Menu, Integer> menus = createMenus(menuInput);
         validateIsOverTwentyMenu(menus);
         validateIsOnlyDrink(menus);
@@ -35,7 +36,7 @@ public class Reservation {
             String menuName = twoOrMoreMenuMatcher.group(1);
             int menuCount = Integer.parseInt(twoOrMoreMenuMatcher.group(2));
             validateIsContainMenu(menuName);
-            validateDuplicateMenu(menuName,menus);
+            validateDuplicateMenu(menuName, menus);
             validateIsUnderOneMenu(menuCount);
             menus.put(Menu.valueOf(menuName), menuCount);
         }
@@ -133,6 +134,21 @@ public class Reservation {
         if (menus.containsKey(Menu.valueOf(menuName))) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
+    }
+
+    public void validateMenuInputForm(String menuInput) {
+
+        Pattern oneMenuPattern = Pattern.compile("^[가-힣]+-\\d+$");
+        Pattern twoOrMoreMenuPatter = Pattern.compile("([가-힣]+-\\d+)(?:,([가-힣]+-\\d+))*");
+
+        Matcher oneMenuMatcher = oneMenuPattern.matcher(menuInput);
+        Matcher twoOrMoreMenuMatcher = twoOrMoreMenuPatter.matcher(menuInput);
+
+        if (!oneMenuMatcher.matches() && !twoOrMoreMenuMatcher.matches()) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+
+
     }
 
 
