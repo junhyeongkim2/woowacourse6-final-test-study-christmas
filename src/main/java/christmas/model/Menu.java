@@ -1,6 +1,7 @@
 package christmas.model;
 
 public enum Menu {
+
     양송이수프("양송이수프", "에피타이저", 6_000),
     타파스("타파스", "에피타이저", 5_500),
     시저샐러드("시저샐러드", "에피타이저", 8_000),
@@ -42,4 +43,5 @@ public enum Menu {
     public int getPrice() {
         return price;
     }
+
 }

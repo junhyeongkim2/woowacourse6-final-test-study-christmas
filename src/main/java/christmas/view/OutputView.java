@@ -36,7 +36,7 @@ public class OutputView {
 
     public static void printEventResult(EventResult eventResult) {
         System.out.println("<혜택 내역>");
-        System.out.println(eventResult.toString() + "\n");
+        System.out.println(eventResult.toString());
     }
 
     public static void printTotalBenefitAmount(EventResult eventResult) {

@@ -30,6 +30,7 @@ public class Reservation {
         while (twoOrMoreMenuMatcher.find()) {
             String menuName = twoOrMoreMenuMatcher.group(1);
             int menuCount = Integer.parseInt(twoOrMoreMenuMatcher.group(2));
+            System.out.println(menuName + " " + menuCount);
             menus.put(Menu.valueOf(menuName), menuCount);
         }
         return menus;
