@@ -20,15 +20,10 @@ public class Reservation {
     private final static int MAX_ORDER_COUNT = 20;
     private static final String MENUS_ERROR_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
 
-    private final static String ONE_MENU_PATTERN = "^[가-힣]+-\\d+$";
-    private final static String TWO_OR_MORE_MENU_PATTERN = "([가-힣]+-\\d+)(?:,([가-힣]+-\\d+))*";
-
-
     private final Map<Menu, Integer> menus;
     private final Calendar christmasCalendar;
 
     public Reservation(String menuInput, Calendar christmasCalendar) {
-        validateMenuInputForm(menuInput);
         Map<Menu, Integer> menus = createMenus(menuInput);
         validateIsOverTwentyMenu(menus);
         validateIsOnlyDrink(menus);
@@ -144,20 +139,6 @@ public class Reservation {
         }
     }
 
-    public void validateMenuInputForm(String menuInput) {
-
-        Pattern oneMenuPattern = Pattern.compile(ONE_MENU_PATTERN);
-        Pattern twoOrMoreMenuPatter = Pattern.compile(TWO_OR_MORE_MENU_PATTERN);
-
-        Matcher oneMenuMatcher = oneMenuPattern.matcher(menuInput);
-        Matcher twoOrMoreMenuMatcher = twoOrMoreMenuPatter.matcher(menuInput);
-
-        if (!oneMenuMatcher.matches() && !twoOrMoreMenuMatcher.matches()) {
-            throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
-        }
-
-
-    }
 
 
 }

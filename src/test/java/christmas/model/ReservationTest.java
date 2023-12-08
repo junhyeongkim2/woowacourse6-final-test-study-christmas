@@ -51,11 +51,4 @@ public class ReservationTest {
                 IllegalArgumentException.class);
     }
 
-    @DisplayName("메뉴 형식이 다를 경우 예외 발생 테스트")
-    @Test
-    void createMenus_IfInvalidForm_ExceptionThrow() {
-        //given && when && then
-        assertThatThrownBy(() -> new Reservation("해산물파스타2&@타파스-1", new ChristmasCalendar(5))).isInstanceOf(
-                IllegalArgumentException.class);
-    }
 }
