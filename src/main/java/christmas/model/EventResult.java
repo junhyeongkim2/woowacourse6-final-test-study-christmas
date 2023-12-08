@@ -27,4 +27,10 @@ public class EventResult {
     public List<EventPolicy> getEvents() {
         return Collections.unmodifiableList(events);
     }
+
+    public int calculateTotalBenefitAmount() {
+        return events.stream().mapToInt(event -> event.calculateDiscount()).sum();
+    }
+
+
 }
