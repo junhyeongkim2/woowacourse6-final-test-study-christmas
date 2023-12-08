@@ -13,7 +13,17 @@ public class ReservationTest {
     @Test
     void createMenus_IfOnlyDrink_ExceptionThrow() {
         //given && when && then
-        assertThatThrownBy(() -> new Reservation("제로콜라-1", new Calender(5))).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Reservation("제로콜라-1", new Calender(5))).isInstanceOf(
+                IllegalArgumentException.class);
+
+    }
+
+    @DisplayName("메뉴 한번에 20개 넘게 주문 시 예외 발생 테스트")
+    @Test
+    void createMenus_IfOverTwentyMenu_ExceptionThrow() {
+        //given && when && then
+        assertThatThrownBy(() -> new Reservation("제로콜라-19,타파스-20", new Calender(5))).isInstanceOf(
+                IllegalArgumentException.class);
 
     }
 }

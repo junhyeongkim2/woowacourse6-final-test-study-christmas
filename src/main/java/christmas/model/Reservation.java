@@ -20,7 +20,10 @@ public class Reservation {
     private final Calender calender;
 
     public Reservation(String menuInput, Calender calendar) {
-        this.menus = validateIsOnlyDrink(createMenus(menuInput));
+        Map<Menu, Integer> menus = createMenus(menuInput);
+        validateIsOverTwentyMenu(menus);
+        validateIsOnlyDrink(menus);
+        this.menus = menus;
         this.calender = calendar;
     }
 
@@ -98,10 +101,18 @@ public class Reservation {
         return false;
     }
 
-    public Map<Menu,Integer> validateIsOnlyDrink(Map<Menu, Integer> menus) {
+    public Map<Menu, Integer> validateIsOnlyDrink(Map<Menu, Integer> menus) {
         if (menus.keySet().stream().allMatch(key -> key.isDrink())) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
         return menus;
     }
+
+    public void validateIsOverTwentyMenu(Map<Menu, Integer> menus) {
+        if (menus.entrySet().stream().mapToInt(key->key.getValue()).sum() > 20) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+
 }
