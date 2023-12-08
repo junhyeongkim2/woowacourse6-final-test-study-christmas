@@ -13,16 +13,24 @@ public class EventPlannerController {
         OutputView.printPlannerStartMessage();
         int visitDay = repeatUntilValid(() -> InputView.readVisitDay());
         Reservation reservation = repeatUntilValid(() -> new Reservation(InputView.readMenus(), new Calender(visitDay)));
-        OutputView.printVisitDayMessage(reservation);
-        OutputView.printMenus(reservation);
-        OutputView.printTotalOrderAmount(reservation);
-        OutputView.printGiveaway(reservation);
+        printReservation(reservation);
         EventResult eventResult = EventResult.of(reservation);
+        printEventResult(reservation, eventResult);
+    }
+
+    private void printEventResult(Reservation reservation, EventResult eventResult) {
         OutputView.printEventResult(eventResult);
         OutputView.printTotalBenefitAmount(eventResult);
         OutputView.printExpectedPaymentAmount(
                 eventResult.calculateExpectedPaymentAmount(reservation.calculateTotalOrderAmount()));
         OutputView.printBadge(eventResult);
+    }
+
+    private void printReservation(Reservation reservation) {
+        OutputView.printVisitDayMessage(reservation);
+        OutputView.printMenus(reservation);
+        OutputView.printTotalOrderAmount(reservation);
+        OutputView.printGiveaway(reservation);
     }
 
     private <T> T repeatUntilValid(Supplier<T> function) {
