@@ -35,6 +35,7 @@ public class Reservation {
             String menuName = twoOrMoreMenuMatcher.group(1);
             int menuCount = Integer.parseInt(twoOrMoreMenuMatcher.group(2));
             validateIsContainMenu(menuName);
+            validateDuplicateMenu(menuName,menus);
             validateIsUnderOneMenu(menuCount);
             menus.put(Menu.valueOf(menuName), menuCount);
         }
@@ -116,14 +117,20 @@ public class Reservation {
         }
     }
 
-    public void validateIsContainMenu(String menu) {
-        if (!Menu.isContain(menu)) {
+    public void validateIsContainMenu(String menuName) {
+        if (!Menu.isContain(menuName)) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
     public void validateIsUnderOneMenu(int menuCount) {
         if (menuCount < 1) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    public void validateDuplicateMenu(String menuName, Map<Menu, Integer> menus) {
+        if (menus.containsKey(Menu.valueOf(menuName))) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
