@@ -20,7 +20,7 @@ public class WeekendEvent implements EventPolicy {
     @Override
     public int calculateDiscount() {
         if (isSatisfy(reservation)) {
-            return -(reservation.calculateMainMenuCount() * 2023);
+            return -(reservation.calculateMainMenuCount() * eventType.getDiscountAmount());
         }
         return 0;
     }

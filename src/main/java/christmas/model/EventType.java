@@ -19,4 +19,8 @@ public enum EventType {
     public String getName() {
         return name;
     }
+
+    public int getDiscountAmount() {
+        return discountAmount;
+    }
 }

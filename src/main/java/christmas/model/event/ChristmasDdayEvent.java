@@ -22,7 +22,7 @@ public class ChristmasDdayEvent implements EventPolicy {
     @Override
     public int calculateDiscount() {
         if (isSatisfy(reservation)) {
-            return -((reservation.getVisitDay() - 1) * 100 + 1000);
+            return -((reservation.getVisitDay() - 1) *  EventType.CHRISTMASDDAY.getDiscountAmount() + 1000);
         }
         return 0;
     }
