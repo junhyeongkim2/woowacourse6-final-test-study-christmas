@@ -33,17 +33,30 @@ public class Reservation {
 
     public Map<Menu, Integer> createMenus(String menuInput) {
         Map<Menu, Integer> menus = new EnumMap<Menu, Integer>(Menu.class);
+        Matcher twoOrMoreMenuMatcher = getMatcher(menuInput);
+        findPattern(menus, twoOrMoreMenuMatcher);
+        return menus;
+    }
+
+    private Matcher getMatcher(String menuInput) {
         Pattern twoOrMoreMenuPattern = Pattern.compile(MENU_SPLIT_REGEX);
         Matcher twoOrMoreMenuMatcher = twoOrMoreMenuPattern.matcher(menuInput);
+        return twoOrMoreMenuMatcher;
+    }
+
+    private void findPattern(Map<Menu, Integer> menus, Matcher twoOrMoreMenuMatcher) {
         while (twoOrMoreMenuMatcher.find()) {
             String menuName = twoOrMoreMenuMatcher.group(MENU_NAME);
             int menuCount = Integer.parseInt(twoOrMoreMenuMatcher.group(MENU_COUNT));
-            validateIsContainMenu(menuName);
-            validateDuplicateMenu(menuName, menus);
-            validateIsUnderOneMenu(menuCount);
+            validateMenus(menus, menuName, menuCount);
             menus.put(Menu.valueOf(menuName), menuCount);
         }
-        return menus;
+    }
+
+    private void validateMenus(Map<Menu, Integer> menus, String menuName, int menuCount) {
+        validateIsContainMenu(menuName);
+        validateDuplicateMenu(menuName, menus);
+        validateIsUnderOneMenu(menuCount);
     }
 
     public int getVisitDay() {
@@ -138,7 +151,6 @@ public class Reservation {
             throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
         }
     }
-
 
 
 }
