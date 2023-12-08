@@ -4,8 +4,11 @@ import camp.nextstep.edu.missionutils.Console;
 import christmas.model.EventResult;
 import christmas.model.Menu;
 import christmas.model.Reservation;
+import java.text.DecimalFormat;
 
 public class OutputView {
+    private static final DecimalFormat decimalFormat = new DecimalFormat("###,###");
+
     public static void printPlannerStartMessage() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
     }
@@ -21,7 +24,7 @@ public class OutputView {
 
     public static void printTotalOrderAmount(Reservation reservation) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.printf("%d원\n\n", reservation.calculateTotalOrderAmount());
+        System.out.printf("%d원\n\n", decimalFormat.format(reservation.calculateTotalOrderAmount()));
     }
 
     public static void printGiveaway(Reservation reservation) {
@@ -41,12 +44,12 @@ public class OutputView {
 
     public static void printTotalBenefitAmount(EventResult eventResult) {
         System.out.println("<총혜택 금액>");
-        System.out.printf("%d원\n\n", eventResult.calculateTotalBenefitAmount());
+        System.out.printf("%d원\n\n", decimalFormat.format(eventResult.calculateTotalBenefitAmount()));
     }
 
     public static void printExpectedPaymentAmount(int expectedPaymentAmount) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.printf("%d원\n\n", expectedPaymentAmount);
+        System.out.printf("%d원\n\n", decimalFormat.format(expectedPaymentAmount));
     }
 
     public static void printBadge(EventResult eventResult) {
