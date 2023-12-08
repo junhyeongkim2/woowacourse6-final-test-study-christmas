@@ -29,6 +29,7 @@ public class Reservation {
         while (twoOrMoreMenuMatcher.find()) {
             String menuName = twoOrMoreMenuMatcher.group(1);
             int menuCount = Integer.parseInt(twoOrMoreMenuMatcher.group(2));
+            System.out.println(menuName + " " + menuCount);
             menus.put(Menu.valueOf(menuName), menuCount);
         }
         return menus;
@@ -86,9 +87,15 @@ public class Reservation {
     }
 
     public int calculateTotalOrderAmount() {
-        return menus.entrySet().stream().mapToInt(key -> Menu.valueOf(String.valueOf(key)).getPrice() * key.getValue())
+        return menus.entrySet().stream().mapToInt(key -> Menu.valueOf(String.valueOf(key.getKey())).getPrice() * key.getValue())
                 .sum();
     }
 
 
+    public boolean isSatisfyTotalOrderAmount() {
+        if (calculateTotalOrderAmount() >= 10000) {
+            return true;
+        }
+        return false;
+    }
 }

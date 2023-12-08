@@ -14,11 +14,14 @@ public class GiveawayEvent implements EventPolicy {
 
     @Override
     public boolean isSatisfy(Reservation reservation) {
-        return reservation.isGiveaway();
+        return (reservation.isGiveaway() && reservation.isSatisfyTotalOrderAmount());
     }
 
     @Override
     public int calculateDiscount() {
-        return -Menu.샴페인.getPrice();
+        if (isSatisfy(reservation)) {
+            return -Menu.샴페인.getPrice();
+        }
+        return 0;
     }
 }

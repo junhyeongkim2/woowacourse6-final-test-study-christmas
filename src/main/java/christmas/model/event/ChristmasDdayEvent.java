@@ -13,8 +13,9 @@ public class ChristmasDdayEvent implements EventPolicy {
 
     @Override
     public boolean isSatisfy(Reservation reservation) {
-        return reservation.isVisitDaySatisfyChristmasDdayEvent();
+        return (reservation.isVisitDaySatisfyChristmasDdayEvent() && reservation.isSatisfyTotalOrderAmount());
     }
+
 
     @Override
     public int calculateDiscount() {

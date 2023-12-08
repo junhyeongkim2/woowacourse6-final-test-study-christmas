@@ -12,7 +12,7 @@ public class WeekdayEvent implements EventPolicy {
 
     @Override
     public boolean isSatisfy(Reservation reservation) {
-        return reservation.isVisitDaySatisfyWeekday();
+        return (reservation.isVisitDaySatisfyWeekday()&& reservation.isSatisfyTotalOrderAmount());
     }
 
     @Override
