@@ -24,4 +24,9 @@ public class GiveawayEvent implements EventPolicy {
         }
         return 0;
     }
+
+    @Override
+    public boolean isGiveaway() {
+        return true;
+    }
 }

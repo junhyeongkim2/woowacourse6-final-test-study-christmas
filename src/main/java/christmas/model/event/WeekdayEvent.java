@@ -22,4 +22,9 @@ public class WeekdayEvent implements EventPolicy {
         }
         return 0;
     }
+
+    @Override
+    public boolean isGiveaway() {
+        return false;
+    }
 }

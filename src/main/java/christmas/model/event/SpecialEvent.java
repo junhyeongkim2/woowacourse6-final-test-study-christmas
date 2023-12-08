@@ -22,4 +22,9 @@ public class SpecialEvent implements EventPolicy {
         }
         return 0;
     }
+
+    @Override
+    public boolean isGiveaway() {
+        return false;
+    }
 }

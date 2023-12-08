@@ -33,4 +33,8 @@ public class EventResult {
     }
 
 
+    public int calculateExpectedPaymentAmount(int totalOderAmount) {
+        return totalOderAmount + events.stream().filter(event -> !event.isGiveaway())
+                .mapToInt(event -> event.calculateDiscount()).sum();
+    }
 }

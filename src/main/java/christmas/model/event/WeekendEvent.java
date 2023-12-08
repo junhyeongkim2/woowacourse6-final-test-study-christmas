@@ -22,4 +22,9 @@ public class WeekendEvent implements EventPolicy {
         }
         return 0;
     }
+
+    @Override
+    public boolean isGiveaway() {
+        return false;
+    }
 }
