@@ -1,6 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.model.Menu;
 import christmas.model.Reservation;
 
 public class OutputView {
@@ -17,9 +18,19 @@ public class OutputView {
         System.out.println(reservation.getMenusAndCount());
     }
 
-    public static void printTotalOrderAmount(int totalOrderAmount) {
+    public static void printTotalOrderAmount(Reservation reservation) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(totalOrderAmount);
+        System.out.println(reservation.calculateTotalOrderAmount());
+    }
+
+    public static void printGiveaway(Reservation reservation) {
+        System.out.println("<증정 메뉴>");
+        if (reservation.isGiveaway()) {
+            System.out.printf("%s 1개\n", Menu.샴페인);
+        }
+        if (!reservation.isGiveaway()) {
+            System.out.println("없음");
+        }
     }
 
 
