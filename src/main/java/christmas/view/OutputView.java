@@ -24,7 +24,7 @@ public class OutputView {
 
     public static void printTotalOrderAmount(Reservation reservation) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.printf("%d원\n\n", decimalFormat.format(reservation.calculateTotalOrderAmount()));
+        System.out.printf("%s원\n\n", decimalFormat.format(reservation.calculateTotalOrderAmount()));
     }
 
     public static void printGiveaway(Reservation reservation) {
@@ -44,12 +44,12 @@ public class OutputView {
 
     public static void printTotalBenefitAmount(EventResult eventResult) {
         System.out.println("<총혜택 금액>");
-        System.out.printf("%d원\n\n", decimalFormat.format(eventResult.calculateTotalBenefitAmount()));
+        System.out.printf("%s원\n\n", decimalFormat.format(eventResult.calculateTotalBenefitAmount()));
     }
 
     public static void printExpectedPaymentAmount(int expectedPaymentAmount) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.printf("%d원\n\n", decimalFormat.format(expectedPaymentAmount));
+        System.out.printf("%s원\n\n", decimalFormat.format(expectedPaymentAmount));
     }
 
     public static void printBadge(EventResult eventResult) {

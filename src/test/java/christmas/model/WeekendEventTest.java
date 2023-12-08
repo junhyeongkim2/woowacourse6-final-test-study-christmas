@@ -13,7 +13,7 @@ public class WeekendEventTest {
     @Test
     void calculateDiscount_EqualCondition_Success() {
         //given
-        EventPolicy weekendEvent = new WeekendEvent(new Reservation(29, "타파스-1,티본스테이크-2,제로콜라-1,초코케이크-5"));
+        EventPolicy weekendEvent = new WeekendEvent(new Reservation( "타파스-1,티본스테이크-2,제로콜라-1,초코케이크-5",new Calender(29)));
         //when
         int discount = weekendEvent.calculateDiscount();
         //then

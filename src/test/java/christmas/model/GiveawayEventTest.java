@@ -12,7 +12,8 @@ public class GiveawayEventTest {
     @Test
     void calculateDiscount_EqualCondition_Success() {
         //given
-        EventPolicy giveawayEvent = new GiveawayEvent(new Reservation(27, "타파스-1,티본스테이크-1,제로콜라-1,초코케이크-5"));
+        EventPolicy giveawayEvent = new GiveawayEvent(
+                new Reservation("타파스-1,티본스테이크-1,제로콜라-1,초코케이크-5", new Calender(27)));
         //when
         int discount = giveawayEvent.calculateDiscount();
         //then

@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
@@ -14,13 +15,12 @@ import java.util.stream.Collectors;
 
 public class Reservation {
 
-    private final int visitDay;
     private final Map<Menu, Integer> menus;
+    private final Calender calender;
 
-    public Reservation(int visitDay, String menuInput) {
-        this.visitDay = visitDay;
+    public Reservation(String menuInput, Calender calendar) {
         this.menus = createMenus(menuInput);
-
+        this.calender = calendar;
     }
 
     public Map<Menu, Integer> createMenus(String menuInput) {
@@ -36,7 +36,7 @@ public class Reservation {
     }
 
     public int getVisitDay() {
-        return visitDay;
+        return calender.getDayOfMonth();
     }
 
     public String getMenusAndCount() {
@@ -46,30 +46,28 @@ public class Reservation {
     }
 
 
-    public boolean isVisitDaySatisfyChristmasDdayEvent() {
-        if (visitDay >= 1 && visitDay <= 25) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isVisitDaySatisfyWeekday() {
-        LocalDate calender = LocalDate.of(2023, 12, visitDay);
-        DayOfWeek dayOfWeek = calender.getDayOfWeek();
-        return (dayOfWeek != DayOfWeek.FRIDAY && dayOfWeek != DayOfWeek.SATURDAY);
-    }
-
     public int calculateDessertMenuCount() {
         List<Menu> keys = menus.keySet().stream().collect(Collectors.toList());
         List<Menu> desserts = Arrays.stream(Menu.values()).filter(Menu::isDessert).collect(Collectors.toList());
         return keys.stream().filter(key -> desserts.contains(key)).mapToInt(key -> menus.get(key)).sum();
     }
 
-    public boolean isVisitDaySatisfyWeekend() {
-        LocalDate calender = LocalDate.of(2023, 12, visitDay);
-        DayOfWeek dayOfWeek = calender.getDayOfWeek();
-        return (dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY);
+    public boolean isVisitDaySatisfyChristmasDdayEvent() {
+        return calender.isChristmasDdayEvent();
     }
+
+    public boolean isVisitDaySatisfyWeekday() {
+        return calender.isWeekday();
+    }
+
+    public boolean isVisitDaySatisfyWeekend() {
+        return calender.isWeekend();
+    }
+
+    public boolean isVisitDaySatisfySpecialDay() {
+        return calender.isSpecialDay();
+    }
+
 
     public int calculateMainMenuCount() {
         List<Menu> keys = menus.keySet().stream().collect(Collectors.toList());
@@ -77,13 +75,6 @@ public class Reservation {
         return keys.stream().filter(key -> mains.contains(key)).mapToInt(key -> menus.get(key)).sum();
     }
 
-    public boolean isVisitDaySatisfySpecialDay() {
-        List<Integer> specialDays = List.of(3, 10, 17, 24, 25, 31);
-        if (specialDays.contains(visitDay)) {
-            return true;
-        }
-        return false;
-    }
 
     public boolean isGiveaway() {
         if (calculateTotalOrderAmount() >= 120000) {

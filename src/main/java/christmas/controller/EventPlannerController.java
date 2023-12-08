@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.model.Calender;
 import christmas.model.EventResult;
 import christmas.model.Reservation;
 import christmas.view.InputView;
@@ -11,7 +12,7 @@ public class EventPlannerController {
         OutputView.printPlannerStartMessage();
         int visitDay = InputView.readVisitDay();
         String menuInput = InputView.readMenus();
-        Reservation reservation = new Reservation(visitDay, menuInput);
+        Reservation reservation = new Reservation(menuInput, new Calender(visitDay));
         OutputView.printVisitDayMessage(reservation);
         OutputView.printMenus(reservation);
         OutputView.printTotalOrderAmount(reservation);

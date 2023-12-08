@@ -12,7 +12,7 @@ public class SpecialEventTest {
     @Test
     void calculateDiscount_EqualCondition_Success() {
         //given
-        EventPolicy specialEvent = new SpecialEvent(new Reservation(25, "타파스-1,티본스테이크-1,제로콜라-1,초코케이크-5"));
+        EventPolicy specialEvent = new SpecialEvent(new Reservation("타파스-1,티본스테이크-1,제로콜라-1,초코케이크-5", new Calender(25)));
         //when
         int discount = specialEvent.calculateDiscount();
         //then

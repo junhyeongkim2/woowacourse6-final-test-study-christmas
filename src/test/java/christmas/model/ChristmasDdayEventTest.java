@@ -15,7 +15,7 @@ public class ChristmasDdayEventTest {
     @Test
     void calculateDiscount_EqualCondition_Success() {
         //given
-        EventPolicy christmasDdayEvent = new ChristmasDdayEvent(new Reservation(25, "타파스-1,티본스테이크-1,제로콜라-1"));
+        EventPolicy christmasDdayEvent = new ChristmasDdayEvent(new Reservation( "타파스-1,티본스테이크-1,제로콜라-1",new Calender(25)));
         //when
         int discount = christmasDdayEvent.calculateDiscount();
         //then
