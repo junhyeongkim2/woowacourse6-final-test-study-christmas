@@ -41,12 +41,15 @@ public class EventResult {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        if (events.stream().mapToInt(event -> event.calculateDiscount()).sum() == 0) {
+            return "없음";
+        }
         events.stream().filter(event -> event.calculateDiscount() != 0)
                 .forEach(event -> sb.append(event.getEventType().getName() + ": " + event.calculateDiscount() + "원\n"));
         return sb.toString();
     }
 
-    public Badge calculateBadge() {
-        return Badge.valueOf(calculateTotalBenefitAmount());
+    public String calculateBadge() {
+        return Badge.valueOf(calculateTotalBenefitAmount()).getName();
     }
 }

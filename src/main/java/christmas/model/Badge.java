@@ -27,5 +27,7 @@ public enum Badge {
         return NONE;
     }
 
-
+    public String getName() {
+        return name;
+    }
 }

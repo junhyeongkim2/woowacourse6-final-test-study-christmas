@@ -26,14 +26,14 @@ public enum Menu {
 
 
     public boolean isDessert() {
-        if (category == "디저트") {
+        if (category.equals("디저트")) {
             return true;
         }
         return false;
     }
 
     public boolean isMain() {
-        if (category == "메인") {
+        if (category.equals("메인")) {
             return true;
         }
         return false;
