@@ -1,18 +1,12 @@
 package christmas.model;
 
-import java.text.DateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 public class Reservation {
 
@@ -31,15 +25,15 @@ public class Reservation {
 
 
     private final Map<Menu, Integer> menus;
-    private final Calender calender;
+    private final Calendar christmasCalendar;
 
-    public Reservation(String menuInput, Calender calendar) {
+    public Reservation(String menuInput, Calendar christmasCalendar) {
         validateMenuInputForm(menuInput);
         Map<Menu, Integer> menus = createMenus(menuInput);
         validateIsOverTwentyMenu(menus);
         validateIsOnlyDrink(menus);
         this.menus = menus;
-        this.calender = calendar;
+        this.christmasCalendar = christmasCalendar;
     }
 
     public Map<Menu, Integer> createMenus(String menuInput) {
@@ -58,7 +52,7 @@ public class Reservation {
     }
 
     public int getVisitDay() {
-        return calender.getDayOfMonth();
+        return christmasCalendar.getDayOfMonth();
     }
 
     public String getMenusAndCount() {
@@ -75,19 +69,19 @@ public class Reservation {
     }
 
     public boolean isVisitDaySatisfyChristmasDdayEvent() {
-        return calender.isChristmasDdayEvent();
+        return christmasCalendar.isChristmasDdayEvent();
     }
 
     public boolean isVisitDaySatisfyWeekday() {
-        return calender.isWeekday();
+        return christmasCalendar.isWeekday();
     }
 
     public boolean isVisitDaySatisfyWeekend() {
-        return calender.isWeekend();
+        return christmasCalendar.isWeekend();
     }
 
     public boolean isVisitDaySatisfySpecialDay() {
-        return calender.isSpecialDay();
+        return christmasCalendar.isSpecialDay();
     }
 
 

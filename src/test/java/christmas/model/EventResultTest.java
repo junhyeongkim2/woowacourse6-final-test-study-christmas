@@ -12,7 +12,7 @@ public class EventResultTest {
     @Test
     void of_EqualResult_Success() {
         //given
-        EventResult eventResult = EventResult.of(new Reservation("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1", new Calender(5)));
+        EventResult eventResult = EventResult.of(new Reservation("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1", new ChristmasCalendar(5)));
         //when
         List<EventPolicy> events = eventResult.getEvents();
         //then
@@ -23,7 +23,7 @@ public class EventResultTest {
     @Test
     void calculateTotalBenefitAmount_EqualResult_Success() {
         //given
-        EventResult eventResult = EventResult.of(new Reservation("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1", new Calender(5)));
+        EventResult eventResult = EventResult.of(new Reservation("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1", new ChristmasCalendar(5)));
         //when
         int totalBenefitAmount = eventResult.calculateTotalBenefitAmount();
         //then
@@ -34,7 +34,7 @@ public class EventResultTest {
     @Test
     void calculateExpectedPaymentAmount_EqualResult_Success() {
         //given
-        Reservation reservation = new Reservation("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1", new Calender(5));
+        Reservation reservation = new Reservation("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1", new ChristmasCalendar(5));
         EventResult eventResult = EventResult.of(reservation);
         //when
         int totalOderAmount = reservation.calculateTotalOrderAmount();

@@ -1,6 +1,6 @@
 package christmas.controller;
 
-import christmas.model.Calender;
+import christmas.model.ChristmasCalendar;
 import christmas.model.EventResult;
 import christmas.model.Reservation;
 import christmas.view.InputView;
@@ -12,7 +12,8 @@ public class EventPlannerController {
     public void start() {
         OutputView.printPlannerStartMessage();
         int visitDay = repeatUntilValid(() -> InputView.readVisitDay());
-        Reservation reservation = repeatUntilValid(() -> new Reservation(InputView.readMenus(), new Calender(visitDay)));
+        Reservation reservation = repeatUntilValid(
+                () -> new Reservation(InputView.readMenus(), new ChristmasCalendar(visitDay)));
         printReservation(reservation);
         EventResult eventResult = EventResult.of(reservation);
         printEventResult(reservation, eventResult);

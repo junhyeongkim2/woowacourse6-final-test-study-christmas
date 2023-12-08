@@ -1,7 +1,6 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 public class InputView {
 
@@ -10,7 +9,6 @@ public class InputView {
     public static final String VISIT_DAY_ERROR_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
     public static final int START_DAY = 1;
     public static final int END_DAY = 31;
-
 
 
     public static Integer readVisitDay() {

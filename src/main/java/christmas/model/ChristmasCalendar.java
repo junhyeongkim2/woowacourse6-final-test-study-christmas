@@ -4,19 +4,18 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Calender {
+public class ChristmasCalendar implements Calendar {
 
     private static final List<Integer> SPECIAL_DAYS = List.of(3, 10, 17, 24, 25, 31);
     private static final int CURRENT_YEAR = 2023;
     private static final int CURRENT_MONTH = 12;
     private static final int START_DAY = 1;
     private static final int END_DAY = 25;
-
     private final LocalDate calender;
     private final DayOfWeek dayOfWeek;
 
 
-    public Calender(int visitDay) {
+    public ChristmasCalendar(int visitDay) {
         calender = LocalDate.of(CURRENT_YEAR, CURRENT_MONTH, visitDay);
         dayOfWeek = calender.getDayOfWeek();
     }

@@ -3,7 +3,6 @@ package christmas.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.model.event.GiveawayEvent;
-import christmas.model.event.WeekdayEvent;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ public class GiveawayEventTest {
     void calculateDiscount_EqualCondition_Success() {
         //given
         EventPolicy giveawayEvent = new GiveawayEvent(
-                new Reservation("타파스-1,티본스테이크-1,제로콜라-1,초코케이크-5", new Calender(27)));
+                new Reservation("타파스-1,티본스테이크-1,제로콜라-1,초코케이크-5", new ChristmasCalendar(27)));
         //when
         int discount = giveawayEvent.calculateDiscount();
         //then

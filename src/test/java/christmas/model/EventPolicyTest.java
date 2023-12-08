@@ -17,7 +17,7 @@ public class EventPolicyTest {
     void calculateDiscount_EqualCondition_Success() {
         //given
         int discount = 0;
-        Reservation reservation = new Reservation("타파스-1,제로콜라-1", new Calender(25));
+        Reservation reservation = new Reservation("타파스-1,제로콜라-1", new ChristmasCalendar(25));
         EventPolicy christmasDdayEvent = new ChristmasDdayEvent(reservation);
         EventPolicy giveawayEvent = new GiveawayEvent(reservation);
         EventPolicy specialEvent = new SpecialEvent(reservation);

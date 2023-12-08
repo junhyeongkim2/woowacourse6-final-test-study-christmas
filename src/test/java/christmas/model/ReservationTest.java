@@ -1,6 +1,5 @@
 package christmas.model;
 
-import christmas.model.event.GiveawayEvent;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +12,7 @@ public class ReservationTest {
     @Test
     void createMenus_IfOnlyDrink_ExceptionThrow() {
         //given && when && then
-        assertThatThrownBy(() -> new Reservation("제로콜라-1", new Calender(5))).isInstanceOf(
+        assertThatThrownBy(() -> new Reservation("제로콜라-1", new ChristmasCalendar(5))).isInstanceOf(
                 IllegalArgumentException.class);
 
     }
@@ -22,7 +21,7 @@ public class ReservationTest {
     @Test
     void createMenus_IfOverTwentyMenu_ExceptionThrow() {
         //given && when && then
-        assertThatThrownBy(() -> new Reservation("제로콜라-19,타파스-20", new Calender(5))).isInstanceOf(
+        assertThatThrownBy(() -> new Reservation("제로콜라-19,타파스-20", new ChristmasCalendar(5))).isInstanceOf(
                 IllegalArgumentException.class);
 
     }
@@ -31,7 +30,7 @@ public class ReservationTest {
     @Test
     void createMenus_IfNotContainMenu_ExceptionThrow() {
         //given && when && then
-        assertThatThrownBy(() -> new Reservation("제로콜라-5,해산물찌개-1", new Calender(5))).isInstanceOf(
+        assertThatThrownBy(() -> new Reservation("제로콜라-5,해산물찌개-1", new ChristmasCalendar(5))).isInstanceOf(
                 IllegalArgumentException.class);
 
     }
@@ -40,7 +39,7 @@ public class ReservationTest {
     @Test
     void createMenus_IfUnderOneMenu_ExceptionThrow() {
         //given && when && then
-        assertThatThrownBy(() -> new Reservation("제로콜라-5,해산물파스타-0", new Calender(5))).isInstanceOf(
+        assertThatThrownBy(() -> new Reservation("제로콜라-5,해산물파스타-0", new ChristmasCalendar(5))).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
@@ -48,7 +47,7 @@ public class ReservationTest {
     @Test
     void createMenus_IfDuplicateMenu_ExceptionThrow() {
         //given && when && then
-        assertThatThrownBy(() -> new Reservation("해산물파스타-2,해산물파스타-1", new Calender(5))).isInstanceOf(
+        assertThatThrownBy(() -> new Reservation("해산물파스타-2,해산물파스타-1", new ChristmasCalendar(5))).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
@@ -56,7 +55,7 @@ public class ReservationTest {
     @Test
     void createMenus_IfInvalidForm_ExceptionThrow() {
         //given && when && then
-        assertThatThrownBy(() -> new Reservation("해산물파스타2&@타파스-1", new Calender(5))).isInstanceOf(
+        assertThatThrownBy(() -> new Reservation("해산물파스타2&@타파스-1", new ChristmasCalendar(5))).isInstanceOf(
                 IllegalArgumentException.class);
     }
 }
