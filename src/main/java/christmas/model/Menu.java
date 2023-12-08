@@ -27,9 +27,16 @@ public enum Menu {
         this.price = price;
     }
 
-    
+
     public boolean isDessert() {
         if (category.equals("디저트")) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isDrink() {
+        if (category.equals("음료")) {
             return true;
         }
         return false;

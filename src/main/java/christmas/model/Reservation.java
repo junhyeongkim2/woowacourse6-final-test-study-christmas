@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 public class Reservation {
 
@@ -19,7 +20,7 @@ public class Reservation {
     private final Calender calender;
 
     public Reservation(String menuInput, Calender calendar) {
-        this.menus = createMenus(menuInput);
+        this.menus = validateIsOnlyDrink(createMenus(menuInput));
         this.calender = calendar;
     }
 
@@ -97,5 +98,10 @@ public class Reservation {
         return false;
     }
 
-
+    public Map<Menu,Integer> validateIsOnlyDrink(Map<Menu, Integer> menus) {
+        if (menus.keySet().stream().allMatch(key -> key.isDrink())) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+        return menus;
+    }
 }
