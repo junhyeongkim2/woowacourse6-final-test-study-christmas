@@ -26,4 +26,13 @@ public class ReservationTest {
                 IllegalArgumentException.class);
 
     }
+
+    @DisplayName("존재하지 않는 메뉴일 경우 예외 발생 테스트")
+    @Test
+    void createMenus_IfNotContainMenu_ExceptionThrow() {
+        //given && when && then
+        assertThatThrownBy(() -> new Reservation("제로콜라-5,해산물찌개-1", new Calender(5))).isInstanceOf(
+                IllegalArgumentException.class);
+
+    }
 }

@@ -53,4 +53,9 @@ public enum Menu {
         return price;
     }
 
+    public static boolean isContain(String name) {
+        return Arrays.stream(Menu.values()).anyMatch(value -> value.name.equals(name));
+    }
+
+
 }

@@ -33,6 +33,7 @@ public class Reservation {
         Matcher twoOrMoreMenuMatcher = twoOrMoreMenuPattern.matcher(menuInput);
         while (twoOrMoreMenuMatcher.find()) {
             String menuName = twoOrMoreMenuMatcher.group(1);
+            validateIsContainMenu(menuName);
             int menuCount = Integer.parseInt(twoOrMoreMenuMatcher.group(2));
             menus.put(Menu.valueOf(menuName), menuCount);
         }
@@ -109,7 +110,13 @@ public class Reservation {
     }
 
     public void validateIsOverTwentyMenu(Map<Menu, Integer> menus) {
-        if (menus.entrySet().stream().mapToInt(key->key.getValue()).sum() > 20) {
+        if (menus.entrySet().stream().mapToInt(key -> key.getValue()).sum() > 20) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    public void validateIsContainMenu(String menu) {
+        if (!Menu.isContain(menu)) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
