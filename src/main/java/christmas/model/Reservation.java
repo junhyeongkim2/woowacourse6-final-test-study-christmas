@@ -16,13 +16,16 @@ import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 
 public class Reservation {
 
-    private static String MENU_SPLIT_REGEX = "(\\p{IsHangul}+)-(\\d+)";
-    private static int MENU_NAME = 1;
-    private static int MENU_COUNT = 2;
-    private static String BLANK = " ";
-    private static String QUANITY = "개";
-    private static String LINE = "\n";
-    private static int STANDARD_TOTAL_ORDER_AMOUNT = 120000;
+    private final static String MENU_SPLIT_REGEX = "(\\p{IsHangul}+)-(\\d+)";
+    private final static int MENU_NAME = 1;
+    private final static int MENU_COUNT = 2;
+    private final static String BLANK = " ";
+    private final static String QUANITY = "개";
+    private final static String LINE = "\n";
+    private final static int STANDARD_TOTAL_ORDER_AMOUNT = 120000;
+
+    public static final String MENUS_ERROR_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+
 
     private final Map<Menu, Integer> menus;
     private final Calender calender;
@@ -115,32 +118,32 @@ public class Reservation {
 
     public Map<Menu, Integer> validateIsOnlyDrink(Map<Menu, Integer> menus) {
         if (menus.keySet().stream().allMatch(key -> key.isDrink())) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
         }
         return menus;
     }
 
     public void validateIsOverTwentyMenu(Map<Menu, Integer> menus) {
         if (menus.entrySet().stream().mapToInt(key -> key.getValue()).sum() > 20) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
         }
     }
 
     public void validateIsContainMenu(String menuName) {
         if (!Menu.isContain(menuName)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
         }
     }
 
     public void validateIsUnderOneMenu(int menuCount) {
         if (menuCount < 1) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
         }
     }
 
     public void validateDuplicateMenu(String menuName, Map<Menu, Integer> menus) {
         if (menus.containsKey(Menu.valueOf(menuName))) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
         }
     }
 
@@ -153,7 +156,7 @@ public class Reservation {
         Matcher twoOrMoreMenuMatcher = twoOrMoreMenuPatter.matcher(menuInput);
 
         if (!oneMenuMatcher.matches() && !twoOrMoreMenuMatcher.matches()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(MENUS_ERROR_MESSAGE);
         }
 
 
