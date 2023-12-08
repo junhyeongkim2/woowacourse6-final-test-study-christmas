@@ -44,9 +44,14 @@ public class OutputView {
         System.out.println(eventResult.calculateTotalBenefitAmount());
     }
 
-    public static void printExpectedPaymentAmount(EventResult eventResult) {
+    public static void printExpectedPaymentAmount(int expectedPaymentAmount) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(eventResult.calculateExpectedPaymentAmount());
+        System.out.println(expectedPaymentAmount);
+    }
+
+    public static void printBadge(EventResult eventResult) {
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(eventResult.calculateBadge());
     }
 
 }

@@ -45,4 +45,8 @@ public class EventResult {
                 .forEach(event -> sb.append(event.getEventType().getName() + ": " + event.calculateDiscount() + "원\n"));
         return sb.toString();
     }
+
+    public Badge calculateBadge() {
+        return Badge.valueOf(calculateTotalBenefitAmount());
+    }
 }
